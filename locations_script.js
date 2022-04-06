@@ -59,9 +59,7 @@ function getLocations() {
             
         $(data).each(function(key, object) {
             // HTML table row
-            table_rows += "<tr><td>" + object['DexNum'] + "</td><td>" + object['Name'] + "</td><td>" + object['Category'] + "</td><td>" + object['Stage'] + "</td>";
-            table_rows += "<td>" + object['Height'] + "</td><td>" + object['Weight'] + "</td><td>" + object['Ability'] + "</td>";
-            table_rows += "<td>" + object['Type1'] + (object['Type2'] == "" ? "" : "/") + object['Type2'] + "</td><td>" + object['Evolution'] + "</td>";
+            table_rows += "<tr><td>" + object['Location'] + "</td><td>" + object['Region'] + "</td><td>" + object['Climate'] + "</td>";
             table_rows += "<td><button class=\"btn btn-primary\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#" + object['Name'] + "\">Info</button></td></tr>";
             table_rows += "<tr class=\"collapse\" id=\"" + object['Name'] + "\"><td colspan=\"10\"><div class=\"row\">";
             table_rows += "<div class=\"col-8\"><div class=\"card\"><div class=\"card-header\">Found:</div><div class=\"card-body\">";
