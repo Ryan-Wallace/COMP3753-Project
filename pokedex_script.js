@@ -27,6 +27,27 @@ function getLearns(pokemon) {
     return html;
 }
 
+// get possible locations for a pokemon
+function getFound(pokemon) {
+    var api_val = "/api/found/" + pokemon;
+    var html = "";
+
+    $.ajax({
+        url: api_val,
+        success: function(data)  {
+            html = "<table class=\"table\"><tr><th>Location</th><th>Terrain</th><th>Catch rate%</th><th>Lvl</th></tr>";
+
+            $(data).each(function(key, object) {
+                html += "<tr><td>" + object['Location'] + "</td><td>" + object['Terrain'] + "</td><td>" + object['Rate'] + "</td><td>" + object['Lvl'] + "</td></tr>";
+            });
+        
+            html += "</table>";
+        },
+        async: false
+    });
+    return html;
+}
+
 // get all Pokemon data and insert into table rows
 function getPokemon() {
 
@@ -46,7 +67,7 @@ function getPokemon() {
             table_rows += "<div class=\"col-8\"><div class=\"card\"><div class=\"card-header\">Found:</div><div class=\"card-body\">";
             
             // get location data
-            
+            table_rows += getFound(object['Name']);
 
             table_rows += "</div></div></div><div class=\"col-4\"><div class=\"card\"><div class=\"card-header\">Learns:</div><div class=\"card-body\">";
             
