@@ -80,6 +80,19 @@ app.get('/api/learns/:pokemon', (req, res) => {
     });
 });
 
+// get pokemon locations
+app.get('/api/found/:pokemon', (req, res) => {
+    var poke_name = req.params.pokemon;
+    var typeInfo = "SELECT Location, Terrain, Rate, Lvl FROM found WHERE Pokemon = \"" + poke_name + "\"";
+
+    connection.query(typeInfo, function (error, results, fields) {
+        if(error) {
+            return res.status(500).send(error);
+        }
+        res.send(results);
+    });
+});
+
 // deploy pokedex.html to localhost:5000
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/pokedex.html")
