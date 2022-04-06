@@ -52,14 +52,14 @@ function getFound(pokemon) {
 function getLocations() {
 
     // request data from server
-    $.get("/api/locations", function(data)  {
+    $.get("/api/location", function(data)  {
         
         // build table rows from the data
         var table_rows = "";
             
         $(data).each(function(key, object) {
             // HTML table row
-            table_rows += "<tr><td>" + object['Location'] + "</td><td>" + object['Region'] + "</td><td>" + object['Climate'] + "</td>";
+            table_rows += "<tr><td>" + object['Name'] + "</td><td>" + object['Region'] + "</td><td>" + object['Climate'] + "</td>";
             table_rows += "<td><button class=\"btn btn-primary\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#" + object['Name'] + "\">Info</button></td></tr>";
             table_rows += "<tr class=\"collapse\" id=\"" + object['Name'] + "\"><td colspan=\"10\"><div class=\"row\">";
             table_rows += "<div class=\"col-8\"><div class=\"card\"><div class=\"card-header\">Found:</div><div class=\"card-body\">";
