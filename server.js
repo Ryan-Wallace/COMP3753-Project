@@ -70,9 +70,9 @@ app.get('/api/types', (req, res) => {
 // get learnable moves
 app.get('/api/learns/:pokemon', (req, res) => {
     var poke_name = req.params.pokemon;
-    var typeInfo = "SELECT Move, Lvl FROM learns WHERE Name = \"" + poke_name + "\"";
+    var query = "SELECT Move, Lvl FROM learns WHERE Name = \"" + poke_name + "\"";
 
-    connection.query(typeInfo, function (error, results, fields) {
+    connection.query(query, function (error, results, fields) {
         if(error) {
             return res.status(500).send(error);
         }
@@ -83,9 +83,9 @@ app.get('/api/learns/:pokemon', (req, res) => {
 // get pokemon locations
 app.get('/api/found/:pokemon', (req, res) => {
     var poke_name = req.params.pokemon;
-    var typeInfo = "SELECT Location, Terrain, Rate, Lvl FROM found WHERE Pokemon = \"" + poke_name + "\"";
+    var query = "SELECT Location, Terrain, Rate, Lvl FROM found WHERE Pokemon = \"" + poke_name + "\"";
 
-    connection.query(typeInfo, function (error, results, fields) {
+    connection.query(query, function (error, results, fields) {
         if(error) {
             return res.status(500).send(error);
         }
@@ -105,6 +105,7 @@ app.get('/api/location', (req, res) => {
 });
 
 // deploy pokedex.html to localhost:5000
+// deploy pokedex.html to localhost:8080
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/pokedex.html")
 });
@@ -134,8 +135,8 @@ function reconnect() {
     });
 }
 
-// listen on port 5000, connect to database
-app.listen(5000, () => {
+// listen on port 8080, connect to database
+app.listen(8080, () => {
     connection.connect(function(err) {
         if (err) {
             console.error('error connecting: ' + err.stack);
@@ -152,7 +153,7 @@ app.listen(5000, () => {
         
 
         console.log("Database `" + POKEMON + "` connected as id " + connection.threadId);
-        console.log("Listening on localhost:5000");
-        console.log("Visit http://localhost:5000 to access the client.");
+        console.log("Listening on localhost:8080");
+        console.log("Visit http://localhost:8080 to access the client.");
     });
 });
