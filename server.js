@@ -93,6 +93,18 @@ app.get('/api/found/:pokemon', (req, res) => {
     });
 });
 
+app.get('/api/pokemon/:location', (req, res) => {
+    var loc_name = req.params.location;
+    var query = "SELECT Pokemon, Terrain, Rate, Lvl FROM found WHERE Location = \"" + loc_name + "\"";
+
+    connection.query(query, function (error, results, fields) {
+        if(error) {
+            return res.status(500).send(error);
+        }
+        res.send(results);
+    });
+});
+
 // get location data
 app.get('/api/location', (req, res) => {
     var location = "SELECT locations.Name, locations.Region, regions.Climate FROM locations LEFT JOIN regions ON locations.Region = regions.Name";
