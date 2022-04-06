@@ -18,8 +18,7 @@ function getMoves() {
         $(data).each(function(key, object) {
             // HTML table row
             table_rows += "<tr><td>" + object['Name'] + "</td><td>" + object['Category'] + "</td><td>" + object['Type'] + "</td>";
-            table_rows += "<td>" + object['Power'] + "</td><td>" + object['Accuracy'] + "</td><td>" + object['PP'] + "</td>";
-            table_rows += "<td>" + object['Priority']+ "</td></tr>";
+            table_rows += "<td>" + object['Power'] + "</td><td>" + object['Accuracy'] + "</td><td>" + object['PP'] + "</td></tr>";
         });
     
         // add table rows to client page

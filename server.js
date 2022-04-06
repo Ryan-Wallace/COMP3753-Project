@@ -70,9 +70,9 @@ app.get('/api/types', (req, res) => {
 // get learnable moves
 app.get('/api/learns/:pokemon', (req, res) => {
     var poke_name = req.params.pokemon;
-    var typeInfo = "SELECT Move, Lvl FROM learns WHERE Name = \"" + poke_name + "\"";
+    var query = "SELECT Move, Lvl FROM learns WHERE Name = \"" + poke_name + "\"";
 
-    connection.query(typeInfo, function (error, results, fields) {
+    connection.query(query, function (error, results, fields) {
         if(error) {
             return res.status(500).send(error);
         }
@@ -83,9 +83,9 @@ app.get('/api/learns/:pokemon', (req, res) => {
 // get pokemon locations
 app.get('/api/found/:pokemon', (req, res) => {
     var poke_name = req.params.pokemon;
-    var typeInfo = "SELECT Location, Terrain, Rate, Lvl FROM found WHERE Pokemon = \"" + poke_name + "\"";
+    var query = "SELECT Location, Terrain, Rate, Lvl FROM found WHERE Pokemon = \"" + poke_name + "\"";
 
-    connection.query(typeInfo, function (error, results, fields) {
+    connection.query(query, function (error, results, fields) {
         if(error) {
             return res.status(500).send(error);
         }
