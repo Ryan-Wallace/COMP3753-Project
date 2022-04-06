@@ -105,8 +105,9 @@ app.get('/api/pokemon/:location', (req, res) => {
     });
 });
 
+// get location data
 app.get('/api/location', (req, res) => {
-    var location = "SELECT * FROM locations";
+    var location = "SELECT locations.Name, locations.Region, regions.Climate FROM locations LEFT JOIN regions ON locations.Region = regions.Name";
 
     connection.query(location, function (error, results, fields) {
         if(error) {
