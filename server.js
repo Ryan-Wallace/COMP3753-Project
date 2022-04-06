@@ -105,7 +105,7 @@ app.get('/api/location', (req, res) => {
     });
 });
 
-// deploy pokedex.html to localhost:5000
+
 // deploy pokedex.html to localhost:8080
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/pokedex.html")
