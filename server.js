@@ -93,6 +93,17 @@ app.get('/api/found/:pokemon', (req, res) => {
     });
 });
 
+app.get('/api/location', (req, res) => {
+    var location = "SELECT * FROM locations";
+
+    connection.query(location, function (error, results, fields) {
+        if(error) {
+            return res.status(500).send(error);
+        }
+        res.send(results);
+    });
+});
+
 // deploy pokedex.html to localhost:5000
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/pokedex.html")
