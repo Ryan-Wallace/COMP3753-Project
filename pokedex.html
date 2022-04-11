@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <!-- COMP 3753 Project pokedex.html -->
+    
+
     <head>
         <title>Pokedex</title>
 
@@ -19,6 +21,7 @@
     </head>
     <body class="bg-light"> 
         <!-- main body -->
+        <script src="pokedex_script.js"></script>
 
         <div class="container mt-3">
 
@@ -37,17 +40,17 @@
 
             <div class="container p-0">
                 <div class="table-responsive border border-light">
-                    <table class="table table-sm table-hover">
+                    <table id = "pokemon_table" class="table table-sm table-hover">
                         <thead>
                             <tr>
-                                <th>Dex no.</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Stage</th>
-                                <th>Height (m)</th>
-                                <th>Weight (kg)</th>
-                                <th>Ability</th>
-                                <th>Type</th>
+                                <th onclick ="sortTable(0)">Dex no.</th>
+                                <th onclick ="sortTable(1)">Name</th>
+                                <th onclick ="sortTable(2)">Category</th>
+                                <th onclick ="sortTable(3)">Stage</th>
+                                <th onclick ="sortTable(4)">Height (m)</th>
+                                <th onclick ="sortTable(5)">Weight (kg)</th>
+                                <th onclick ="sortTable(6)">Ability</th>
+                                <th onclick ="sortTable(7)">Type</th>
                                 <th>Evolution</th>
                                 <th></th>
                             </tr>
