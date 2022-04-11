@@ -23,12 +23,24 @@
         <!-- main body -->
         <script src="pokedex_script.js"></script>
 
-        <div class="search-bars">
-            <input type="text" id="dex" onkeyup="searchPokemon(0)" placeholder="Search Dex.no">
-            <input type="text" id="name" onkeyup="searchPokemon(1)" placeholder="Search Names">
-            <input type="text" id="cat" onkeyup="searchPokemon(2)" placeholder="Search Category">
-            <input type="text" id="ability" onkeyup="searchPokemon(6)" placeholder="Search Ability">
-            <input type="text" id="type" onkeyup="searchPokemon(7)" placeholder="Search Type">
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" id="dex" onkeyup="searchPokemon(0)" placeholder="Search Dex.no">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="name" onkeyup="searchPokemon(1)" placeholder="Search Names">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="cat" onkeyup="searchPokemon(2)" placeholder="Search Category">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="ability" onkeyup="searchPokemon(6)" placeholder="Search Ability">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" id="type" onkeyup="searchPokemon(7)" placeholder="Search Type">
+                </div>
+            </div>
         </div>
 
         <div class="container mt-3">
@@ -51,14 +63,14 @@
                     <table class="table table-sm table-hover">
                         <thead>
                             <tr>
-                                <th class = "sortable" onclick ="sortTable(0)">Dex no.</th>
-                                <th class = "sortable" onclick ="sortTable(1)">Name</th>
-                                <th class = "sortable" onclick ="sortTable(2)">Category</th>
-                                <th class = "sortable" onclick ="sortTable(3)">Stage</th>
-                                <th class = "sortable" onclick ="sortTable(4)">Height (m)</th>
-                                <th class = "sortable" onclick ="sortTable(5)">Weight (kg)</th>
-                                <th class = "sortable" onclick ="sortTable(6)">Ability</th>
-                                <th class = "sortable" onclick ="sortTable(7)">Type</th>
+                                <th class="sortable" onclick="sortTable(0)">Dex no.</th>
+                                <th class="sortable" onclick="sortTable(1)">Name</th>
+                                <th class="sortable" onclick="sortTable(2)">Category</th>
+                                <th class="sortable" onclick="sortTable(3)">Stage</th>
+                                <th class="sortable" onclick="sortTable(4)">Height (m)</th>
+                                <th class="sortable" onclick="sortTable(5)">Weight (kg)</th>
+                                <th class="sortable" onclick="sortTable(6)">Ability</th>
+                                <th class="sortable" onclick="sortTable(7)">Type</th>
                                 <th>Evolution</th>
                                 <th></th>
                             </tr>
