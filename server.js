@@ -139,7 +139,6 @@ function reconnect() {
         }
         connection.on('error', err => {
             if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-                console.log("reconnecting...");
                 reconnect();
             } else {
                 throw err;
