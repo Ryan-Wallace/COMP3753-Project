@@ -23,6 +23,14 @@
         <!-- main body -->
         <script src="pokedex_script.js"></script>
 
+        <div class="search-bars">
+            <input type="text" id="dex" onkeyup="searchPokemon(0)" placeholder="Search Dex.no">
+            <input type="text" id="name" onkeyup="searchPokemon(1)" placeholder="Search Names">
+            <input type="text" id="cat" onkeyup="searchPokemon(2)" placeholder="Search Category">
+            <input type="text" id="ability" onkeyup="searchPokemon(6)" placeholder="Search Ability">
+            <input type="text" id="type" onkeyup="searchPokemon(7)" placeholder="Search Type">
+        </div>
+
         <div class="container mt-3">
 
             <!-- Navbar -->
@@ -40,20 +48,25 @@
 
             <div class="container p-0">
                 <div class="table-responsive border border-light">
-                    <table id = "pokemon_table" class="table table-sm table-hover">
+                    <table class="table table-sm table-hover">
                         <thead>
                             <tr>
-                                <th onclick ="sortTable(0)">Dex no.</th>
-                                <th onclick ="sortTable(1)">Name</th>
-                                <th onclick ="sortTable(2)">Category</th>
-                                <th onclick ="sortTable(3)">Stage</th>
-                                <th onclick ="sortTable(4)">Height (m)</th>
-                                <th onclick ="sortTable(5)">Weight (kg)</th>
-                                <th onclick ="sortTable(6)">Ability</th>
-                                <th onclick ="sortTable(7)">Type</th>
+                                <th class = "sortable" onclick ="sortTable(0)">Dex no.</th>
+                                <th class = "sortable" onclick ="sortTable(1)">Name</th>
+                                <th class = "sortable" onclick ="sortTable(2)">Category</th>
+                                <th class = "sortable" onclick ="sortTable(3)">Stage</th>
+                                <th class = "sortable" onclick ="sortTable(4)">Height (m)</th>
+                                <th class = "sortable" onclick ="sortTable(5)">Weight (kg)</th>
+                                <th class = "sortable" onclick ="sortTable(6)">Ability</th>
+                                <th class = "sortable" onclick ="sortTable(7)">Type</th>
                                 <th>Evolution</th>
                                 <th></th>
                             </tr>
+                            <style>
+                                .sortable{
+                                    cursor: pointer
+                                }
+                            </style>
                         </thead>
                         <tbody id="table_body">
                             <!-- place holder for pokemon table rows -->

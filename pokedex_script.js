@@ -164,3 +164,43 @@ function sortTable(n) {
     }
   }
 
+  function searchPokemon(n) {
+      // Declare variables
+  var input, filter, table, td, i, txtValue, inputName;
+  switch(n) {
+    case 0:
+        inputName = "dex";
+        break;
+    case 1:
+        inputName = "name";
+        break;
+    case 2:
+        inputName = "cat";
+        break;
+    case 6:
+        inputName = "ability";
+        break;
+    case 7:
+        inputName = "type";
+        break;
+  }
+  input = document.getElementById(inputName);
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table_body");
+  rows = table.rows;
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < rows.length; i+=2) {
+    td = rows[i].getElementsByTagName("td")[n];
+    txtValue = td.innerHTML
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        rows[i].style.display = "";
+        rows[i+1].style.display = "";
+    } 
+    else {
+        rows[i].style.display = "none";
+        rows[i+1].style.display = "none";
+    }
+  }
+  }
+
