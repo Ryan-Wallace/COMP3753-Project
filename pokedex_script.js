@@ -68,7 +68,7 @@ function getPokemon() {
             table_rows += "<div class=\"col-8\"><div class=\"card\"><div class=\"card-header\">Found:</div><div class=\"card-body\">";
             
             // get location data
-            table_rows += getTypes(parseInt(object['DexNum']));
+            table_rows += getFound(object['Name']);
 
             table_rows += "</div></div></div><div class=\"col-4\"><div class=\"card\"><div class=\"card-header\">Learns:</div><div class=\"card-body\">";
             
@@ -82,98 +82,6 @@ function getPokemon() {
         // add table rows to client page
         $("#table_body").html(table_rows);
     });
-}
-
-//Creates and returns an unordered list (html) of weaknesses, resistances, and immunities
-//for pokemon with dex number dexNum. (parse dexNum to int when calling)
-function getTypes(dexNum) {
-    var type1, type2 = "", r1, r2, w1, w2, i1, i2, weaknesses, resistances, immunities;
-    var html = "";
-
-    var getObjectByValue = function (array, key, value) {
-        return array.filter(function (object) {
-            return object[key] === value;
-        });
-    };
-    
-    $.get("/api/pokemon", function(pkList)  {
-        type1 = pkList[dexNum -1]['Type1'];
-
-        if(pkList[dexNum -1]['Type2'] != "") {
-            type2 = pkList[dexNum -1]['Type2'];
-        }
-
-        $.get("/api/types", function(types) {
-            w1 = getObjectByValue(types, "Type", type1);
-            w1 = new Set(w1[0]["Weaknesses"].split(','));
-
-            r1 = getObjectByValue(types, "Type", type1);
-            r1 = new Set(r1[0]["Resistances"].split(','));
-
-            i1 = getObjectByValue(types, "Type", type1);
-            if(i1[0]["Immunities"] != null) {
-                i1 = new Set(i1[0]["Immunities"].split(','));
-            }
-            else {
-                i1 = new Set();
-            }
-
-
-            if(type2 != null) {
-                w2 = getObjectByValue(types, "Type", type2);
-                w2 = new Set(w2[0]["Weaknesses"].split(','));
-            
-                r2 = getObjectByValue(types, "Type", type2);
-                r2 = new Set(r2[0]["Resistances"].split(','));
-
-                i2 = getObjectByValue(types, "Type", type2);
-                if(i2[0]["Immunities"] != null) {
-                    i2 = new Set(i2[0]["Immunities"].split(','));
-                }
-                else {
-                    i2 = new Set();
-                }
-            }
-            
-            immunities = union(i1, i2);
-            weaknesses = difference(union(difference(w1, r2), difference(w2, r1)), immunities);
-            resistances = difference(union(difference(r1, w2), difference(r2, w1)), immunities);
-
-            immunities = Array.from(immunities).join(',');
-            weaknesses = Array.from(weaknesses).join(',');
-            resistances = Array.from(resistances).join(',');
-
-            html += "<ul><li>Weaknesses:" + weaknesses + "</li><li>Resistances:" + resistances + "</li>";
-            html += "<li>Immunities:" + immunities + "</li></ul>";
-            console.log(html);
-
-        });
-
-        
-    });
-    return html;
-}
-
-// Computes union of two sets
-function union(setA, setB) {
-    const union = new Set(setA);
-
-    for (const elem of setB) {
-        union.add(elem);
-    }
-
-    return union;
-}
-
-// Computes the difference of two sets (for types)
-function difference(setA, setB) {
-    const diff = new Set(setA);
-
-    for (const elem of setB) {
-        diff.delete(elem);
-    }
-
-    return diff;
 }
 
 // Sort rows by table headers

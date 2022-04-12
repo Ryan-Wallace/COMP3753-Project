@@ -25,14 +25,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static(__dirname + '/'));
 
-var database, all_customers, all_orders;
-
-/*  format sql:
-    var sql = "SELECT * FROM ?? WHERE ?? = ?";
-    var inserts = ['users', 'id', userId];
-    sql = mysql.format(sql, inserts);
-*/
-
 // get pokemon list
 app.get('/api/pokemon', (req, res) => {
 
