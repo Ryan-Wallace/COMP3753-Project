@@ -56,9 +56,11 @@ function getPokemon() {
         
         // build table rows from the data
         var table_rows = "";
+        var count = 0;
             
         $(data).each(function(key, object) {
             // HTML table row
+            count++;
             table_rows += "<tr><td>" + object['DexNum'] + "</td><td>" + object['Name'] + "</td><td>" + object['Category'] + "</td><td>" + object['Stage'] + "</td>";
             table_rows += "<td>" + object['Height'] + "</td><td>" + object['Weight'] + "</td><td>" + object['Ability'] + "</td>";
             table_rows += "<td>" + object['Type1'] + (object['Type2'] == "" ? "" : "/") + object['Type2'] + "</td><td>" + object['Evolution'] + "</td>";
@@ -66,8 +68,9 @@ function getPokemon() {
 
             table_rows += "<tr class=\"collapse\" id=\"" + object['Name'] + "\">"
 
-            table_rows += "<td colspan=\"10\"><div class=\"row\">";
-            table_rows += "<div class=\"col-8\"><div class=\"card\"><div class=\"card-header\">Found:</div><div class=\"card-body\">";
+            table_rows += "<td colspan=\"10\">";
+            table_rows += "<p id =\"" + object['DexNum'] + "P\"></p>";
+            table_rows += "<div class=\"row\"><div class=\"col-8\"><div class=\"card\"><div class=\"card-header\">Found:</div><div class=\"card-body\">";
             
             // get location data
             table_rows += getFound(object['Name']);
@@ -83,6 +86,9 @@ function getPokemon() {
     
         // add table rows to client page
         $("#table_body").html(table_rows);
+        for(i = 1; i <= count; i++) {
+            getTypes(i);
+        }
     });
 }
 
@@ -146,19 +152,21 @@ function getTypes(dexNum) {
             weaknesses = difference(union(difference(w1, r2), difference(w2, r1)), immunities);
             resistances = difference(union(difference(r1, w2), difference(r2, w1)), immunities);
 
-            immunities = Array.from(immunities).join(',');
-            weaknesses = Array.from(weaknesses).join(',');
-            resistances = Array.from(resistances).join(',');
+            immunities = Array.from(immunities).join(', ');
+            weaknesses = Array.from(weaknesses).join(', ');
+            resistances = Array.from(resistances).join(', ');
 
-            html += "<ul><li>Weaknesses:" + weaknesses + "</li><li>Resistances:" + resistances + "</li>";
-            html += "<li>Immunities:" + immunities + "</li></ul>";
-            console.log(html);
+            html += "<p>Weaknesses: " + weaknesses + "</p><p>Resistances: " + resistances;
+            html += "</p><p>Immunities: " + immunities + "</p>";
 
+            id = "#" + dexNum + "P"
+            $(id).html(html);
+            console.log(id);
         });
 
         
     });
-    return html;
+    console.log(html);
 }
 
 // Computes union of two sets
