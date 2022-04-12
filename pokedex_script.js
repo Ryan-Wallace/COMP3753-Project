@@ -143,7 +143,7 @@ function getTypes(dexNum) {
             weaknesses = Array.from(weaknesses).join(',');
             resistances = Array.from(resistances).join(',');
 
-            html += "<ul><li>Weaknesses:" + weaknesses + "</li> + <li>Resistances:" + resistances + "</li>";
+            html += "<ul><li>Weaknesses:" + weaknesses + "</li><li>Resistances:" + resistances + "</li>";
             html += "<li>Immunities:" + immunities + "</li></ul>";
             console.log(html);
 
