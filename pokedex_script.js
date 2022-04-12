@@ -119,7 +119,7 @@ function getTypes(dexNum) {
             }
 
 
-            if(type2 != null) {
+            if(type2 != "") {
                 w2 = getObjectByValue(types, "Type", type2);
                 w2 = new Set(w2[0]["Weaknesses"].split(','));
             
