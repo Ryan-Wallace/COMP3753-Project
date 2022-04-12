@@ -134,6 +134,11 @@ function getTypes(dexNum) {
                     i2 = new Set();
                 }
             }
+            else {
+                w2 = new Set();
+                r2 = new Set();
+                i2 = new Set();
+            }
             
             immunities = union(i1, i2);
             weaknesses = difference(union(difference(w1, r2), difference(w2, r1)), immunities);
